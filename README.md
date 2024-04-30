@@ -9,5 +9,6 @@ Around 2015 I came with idea to create a SPA application as a service where inpu
 - Solving problem of a custom extending the basic solution
 
 ## Techonlogies
-JSON - feels like a most obviuos decision for the API
-Node with typescript on both server and browser side, would allow to reuse the API definition
+- JSON - feels like a most obviuos decision for the API
+- Typescript on both server and browser side, would allow to reuse the API definition
+- Node NPM feels like a obvious option for handling some (minimum) dependencies problem

@@ -1,9 +1,10 @@
+import { Params } from "./low-level-api";
+
 export interface MenuItem {
     route: string;
     label: string;
-    description?: string;
+    info?: string;
     items: MenuItem[];
-    click: () => Operations;
 }
 
 export interface RootMenuItem {
@@ -16,12 +17,13 @@ export interface RootMenuItem {
 export interface Field {
     name: string;
     label: string;
-    title: string;
+    info?: string;
     placeholder: string;
     value: string;
     type: string;
+    disabled: boolean;
     attributes: { [name: string]: string };
-    onchange: () => Operations;
+    triggerActionOnChange: boolean;
 }
 
 export type OutputDataType = 'string' | 'number' | 'link' | 'imgSrc' | 'imgInline';
@@ -37,15 +39,24 @@ export interface Data2D {
 export interface Button {
     name: string;
     label: string;
-    click: () => Operations;
 }
 
 export interface Operations {
-    menu: RootMenuItem;
-    fields: Field[];
-    tables: Data2D[];
-    cards: Data2D[];
-    buttons: Button[];
-    openDialog: { name: string; content: Operations };
-    closeDialog: { name: string; };
+    header?: string;
+    text?: { text: string; type?: 'error' | 'warning' | 'info' }[];
+    statuses?: { label: string, value: string };
+    fields?: Field[];
+    tables?: Data2D[];
+    cards?: Data2D[];
+    buttons?: Button[];
+    dialog?: Operations;
+    closeDialog?: {};
+    tabs?: Operations[];
+}
+
+export interface RootOperations extends Operations {
+    menu?: RootMenuItem;
+    navigate?: string[];
+    params?: Params;
+    spinner?: boolean;
 }

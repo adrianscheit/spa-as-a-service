@@ -1,4 +1,4 @@
-import { Params } from "./low-level-api";
+import { Request } from "./low-level-api";
 
 export interface MenuItem {
     route: string;
@@ -26,7 +26,7 @@ export interface Field extends ParametrizedItem {
     triggerRequestOnChange: boolean;
 }
 
-export type OutputDataType = 'string' | 'number' | 'link' | 'imgSrc' | 'action';
+export type OutputDataType = 'text' | 'link' | 'imgSrc';
 
 /// First Column is always the primary key - not displayed directly
 export interface Data2D extends ParametrizedItem {
@@ -34,6 +34,8 @@ export interface Data2D extends ParametrizedItem {
     data: (string | number)[][];
     selectable: 'no' | 'single' | 'multiple';
     triggerRequestOnChange: boolean;
+    sortable: boolean;
+    exportable: boolean;
 }
 
 export interface Button extends ParametrizedItem {
@@ -42,7 +44,7 @@ export interface Button extends ParametrizedItem {
 
 export interface Operations {
     header?: string;
-    texts?: { text: string; type?: 'error' | 'warning' | 'info' }[];
+    staticContent?: { value: string; style?: 'error' | 'warning' | 'info', type: OutputDataType }[];
     tags?: { label: string, value: string };
     fields?: Field[];
     tables?: Data2D[];
@@ -51,10 +53,7 @@ export interface Operations {
     dialog?: Operations;
 }
 
-export interface RootOperations extends Operations {
+export interface RootOperations extends Operations, Partial<Request> {
     menu?: RootMenuItem;
-    path?: string[];
-    params?: Params;
-    spinnerForSecounds?: number;
     refreshIntervalSecounds?: number;
 }

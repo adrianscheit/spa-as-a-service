@@ -10,6 +10,7 @@
   "license": "UNLICENCED",
   "devDependencies": {
     "@types/node": "20",
+    "http-server": "14",
     "typescript": "5",
     "webpack": "5"
   },

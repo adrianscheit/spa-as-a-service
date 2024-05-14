@@ -1,4 +1,4 @@
-export type Params = { [name: string]: string | string[] | number | number[] | boolean | boolean[] }
+export type Params = { [paramName: string]: string[] | number[] | boolean[] }
 
 export interface Request {
     path: string[];
